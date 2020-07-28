@@ -4,5 +4,5 @@ import javax.persistence.Embeddable
 
 @Embeddable
 data class Authorisation(
-        val userName: String,
-        val password: String)
+    val userName: String,
+    val password: String)

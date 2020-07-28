@@ -7,9 +7,9 @@ import javax.persistence.Id
 
 @Entity
 data class AuctionSite(
-        @Id
-        @GeneratedValue(strategy = AUTO)
-        val id: Int,
-        val name: String,
-        val siteURL: String
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    val id: Int,
+    val name: String,
+    val siteURL: String
 )

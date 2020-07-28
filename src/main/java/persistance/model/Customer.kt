@@ -1,13 +1,13 @@
 package persistance.model
 
 
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
-import javax.persistence.OneToOne
-import javax.persistence.ManyToMany
 import javax.persistence.CascadeType.ALL
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType.AUTO
+import javax.persistence.Id
+import javax.persistence.ManyToMany
+import javax.persistence.OneToOne
 
 @Entity
 data class Customer(

@@ -7,11 +7,11 @@ import javax.persistence.Id
 import javax.persistence.ManyToOne
 
 data class AuctionSiteCredentials(
-        @Id
-        @GeneratedValue(strategy = AUTO)
-        val id: Int,
-        @ManyToOne
-        val site: AuctionSite,
-        @Embedded
-        val auth: Authorisation
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    val id: Int,
+    @ManyToOne
+    val site: AuctionSite,
+    @Embedded
+    val auth: Authorisation
 )

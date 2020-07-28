@@ -8,11 +8,11 @@ import javax.persistence.Id
 
 @Entity
 data class Address(
-        @Id
-        @GeneratedValue(strategy = AUTO)
-        val id: Int,
-        val street: String,
-        val town: String,
-        val country: String,
-        val postCode: String
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    val id: Int,
+    val street: String,
+    val town: String,
+    val country: String,
+    val postCode: String
 )
