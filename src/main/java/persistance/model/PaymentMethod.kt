@@ -15,5 +15,5 @@ import javax.persistence.InheritanceType.JOINED
 open class PaymentMethod(
     @Id
     @GeneratedValue(strategy = AUTO)
-    val id: Int)
+    open val id: Int)
 
