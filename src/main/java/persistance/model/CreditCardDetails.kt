@@ -3,7 +3,7 @@ package persistance.model
 import java.time.LocalDateTime
 import javax.persistence.CascadeType.PERSIST
 import javax.persistence.Entity
-import javax.persistence.FetchType
+import javax.persistence.FetchType.EAGER
 import javax.persistence.ManyToOne
 
 @Entity
@@ -13,6 +13,6 @@ data class CreditCardDetails(
     val nameOnCard: String,
     val expiryDate: LocalDateTime,
 
-    @ManyToOne(cascade = [PERSIST], fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(cascade = [PERSIST], fetch = EAGER, optional = false)
     val billingAddress: Address
 ) : PaymentMethod(id)
