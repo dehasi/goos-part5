@@ -43,7 +43,9 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.6.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.6.2")
-    
+    testCompile "org.testcontainers:testcontainers:1.14.3"
+    testCompile "org.testcontainers:junit-jupiter:1.14.3"
+
     compile group: 'org.hibernate', name: 'hibernate-core', version: '6.0.0.Alpha5'
     testCompile group: 'org.hibernate', name: 'hibernate-testing', version: '6.0.0.Alpha5'
 

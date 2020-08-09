@@ -27,7 +27,7 @@
                 value="org.testcontainers.jdbc.ContainerDatabaseDriver"/>
             <property
                 name="javax.persistence.jdbc.url"
-                value="jdbc:tc:mysql:5.7://xxx/test?TC_INITSCRIPT=DDL.sql"/>
+                value="jdbc:tc:mysql:5.7://xxx/test?TC_INITSCRIPT=example-db.ddl"/>
         </properties>
     </persistence-unit>
 </persistence>
