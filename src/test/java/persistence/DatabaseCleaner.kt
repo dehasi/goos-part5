@@ -31,11 +31,11 @@ class DatabaseCleaner(private val entityManager: EntityManager) {
 
     companion object {
         private val ENTITY_TYPES = arrayOf(
-            Address::class.java,
-            AuctionSite::class.java,
-            AuctionSiteCredentials::class.java,
             Customer::class.java,
-            PaymentMethod::class.java
+            PaymentMethod::class.java,
+            AuctionSiteCredentials::class.java,
+            AuctionSite::class.java,
+            Address::class.java
         )
     }
 }
