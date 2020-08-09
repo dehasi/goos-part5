@@ -45,6 +45,9 @@ dependencies {
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.6.2")
     testCompile "org.testcontainers:testcontainers:1.14.3"
     testCompile "org.testcontainers:junit-jupiter:1.14.3"
+    testCompile "org.testcontainers:mysql:1.14.3"
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+
 
     compile group: 'org.hibernate', name: 'hibernate-core', version: '6.0.0.Alpha5'
     testCompile group: 'org.hibernate', name: 'hibernate-testing', version: '6.0.0.Alpha5'

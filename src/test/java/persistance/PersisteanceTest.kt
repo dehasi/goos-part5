@@ -7,7 +7,7 @@ import javax.persistence.Persistence
 
 
 class PersisteanceTest {
-    var em = Persistence.createEntityManagerFactory("TestUnit")
+    var em = Persistence.createEntityManagerFactory("GOOS")
         .createEntityManager()
 
     @Test fun simple_test() {

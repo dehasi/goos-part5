@@ -90,21 +90,21 @@ ALTER TABLE Customer_PaymentMethod
 	ON DELETE CASCADE
 	ON UPDATE NO ACTION;
 
-ALTER TABLE Customer_AuctionSiteLogin
-	ADD CONSTRAINT F4
-	FOREIGN KEY (customer_id)
-	REFERENCES Customer (id)
-	ON DELETE CASCADE
-	ON UPDATE NO ACTION;
+--ALTER TABLE Customer_AuctionSiteLogin
+--	ADD CONSTRAINT F4
+--	FOREIGN KEY (customer_id)
+--	REFERENCES Customer (id)
+--	ON DELETE CASCADE
+--	ON UPDATE NO ACTION;
+--
+--ALTER TABLE Customer_AuctionSiteLogin
+--    ADD CONSTRAINT F5
+--    FOREIGN KEY (auctionSiteLogins_id)
+--    REFERENCES AuctionSiteLogin (id)
+--    ON DELETE CASCADE
+--    ON UPDATE NO ACTION;
 
-ALTER TABLE Customer_AuctionSiteLogin
-    ADD CONSTRAINT F5
-    FOREIGN KEY (auctionSiteLogins_id)
-    REFERENCES AuctionSiteLogin (id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION;
-
-ALTER TABLE PaymateDetails
+ALTER TABLE PayMateDetails
 	ADD CONSTRAINT F6
 	FOREIGN KEY (id)
 	REFERENCES PaymentMethod (id)
