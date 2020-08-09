@@ -1,4 +1,4 @@
-package persistance.model
+package persistence.model
 
 import javax.persistence.DiscriminatorColumn
 import javax.persistence.DiscriminatorType.STRING

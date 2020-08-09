@@ -1,7 +1,7 @@
 package jpa
 
-import persistance.model.Customer
-import persistance.model.CustomerBase
+import persistence.model.Customer
+import persistence.model.CustomerBase
 import java.time.LocalDateTime
 import javax.persistence.EntityManager
 import javax.persistence.Query

@@ -1,8 +1,8 @@
-package persistance
+package persistence
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import persistance.model.Address
+import persistence.model.Address
 import javax.persistence.Persistence
 
 
@@ -11,7 +11,7 @@ class PersisteanceTest {
         .createEntityManager()
 
     @Test fun simple_test() {
-        val  address = Address(23,"","","","")
+        val  address = Address(23, "", "", "", "")
 
         em.persist(address);
 
