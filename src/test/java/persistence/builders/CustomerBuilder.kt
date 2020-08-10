@@ -35,13 +35,13 @@ class CustomerBuilder : AbstractBuilder<CustomerBuilder, Customer>() {
 
     fun withPaymentMethods(vararg paymentMethodBuilders: Builder<out PaymentMethod>): CustomerBuilder {
         val other = clone()
-        other.paymentMethods = setOf<PaymentMethod>(*paymentMethodBuilders)
+        other.paymentMethods = setOf(*paymentMethodBuilders)
         return other
     }
 
     fun usingAuctionSites(vararg auctionSiteLoginBuilders: Builder<AuctionSiteCredentials>): CustomerBuilder {
         val other = clone()
-        other.auctionSitesUsed = setOf<AuctionSiteCredentials>(*auctionSiteLoginBuilders)
+        other.auctionSitesUsed = setOf(*auctionSiteLoginBuilders)
         return other
     }
 

@@ -4,7 +4,6 @@ import jpa.PersistentCustomerBase
 import org.junit.After
 import org.junit.Before
 import org.junit.jupiter.api.Test
-import persistence.builders.CreditCardDetailsBuilder.Companion.aCreditCard
 import persistence.builders.CustomerBuilder
 import persistence.builders.CustomerBuilder.Companion.aCustomer
 import java.time.LocalDate
@@ -29,13 +28,13 @@ class PersistentCustomerBaseTest {
 
         addCustomers(
             aCustomer().withName("Alice (Expired)")
-                .withPaymentMethods(aCreditCard().withExpiryDate(date("1 Jan 2009"))),
-            aCustomer().withName("Bob (Expired)")
-                .withPaymentMethods(aCreditCard().withExpiryDate(date("5 Jun 2009"))),
-            aCustomer().withName("Carol (Valid)")
-                .withPaymentMethods(aCreditCard().withExpiryDate(date(deadLine))),
-            aCustomer().withName("Dave (Valid)")
-                .withPaymentMethods(aCreditCard().withExpiryDate(date("7 Jun 2009"))),
+//                .withPaymentMethods(aCreditCard().withExpiryDate(date("1 Jan 2009"))),
+//            aCustomer().withName("Bob (Expired)")
+//                .withPaymentMethods(aCreditCard().withExpiryDate(date("5 Jun 2009"))),
+//            aCustomer().withName("Carol (Valid)")
+//                .withPaymentMethods(aCreditCard().withExpiryDate(date(deadLine))),
+//            aCustomer().withName("Dave (Valid)")
+//                .withPaymentMethods(aCreditCard().withExpiryDate(date("7 Jun 2009"))),
         )
 
     }
