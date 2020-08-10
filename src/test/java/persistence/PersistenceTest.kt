@@ -18,7 +18,7 @@ class PersistenceTest {
 
 
     @Test fun simple_test() {
-        val address = Address(0, "", "", "", "")
+        val address = Address(0, "Hogeweg 106", "Amsterdam", "Netherlands", "1034HF")
 
         entityManager.persist(address);
 
