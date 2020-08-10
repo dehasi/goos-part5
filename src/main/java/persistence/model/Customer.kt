@@ -4,7 +4,7 @@ package persistence.model
 import javax.persistence.CascadeType.ALL
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType.AUTO
+import javax.persistence.GenerationType.IDENTITY
 import javax.persistence.Id
 import javax.persistence.ManyToMany
 import javax.persistence.OneToOne
@@ -13,7 +13,7 @@ import javax.persistence.OneToOne
 data class Customer(
 
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     val id: Int,
 
     val name: String,

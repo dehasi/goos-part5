@@ -1,7 +1,7 @@
 
 
 CREATE TABLE CreditCardDetails (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     cardNumber VARCHAR(16) NOT NULL,
     nameOnCard VARCHAR(80) NOT NULL,
     expiryDate DATE NOT NULL,
@@ -9,11 +9,11 @@ CREATE TABLE CreditCardDetails (
 );
 
 CREATE TABLE PaymentMethod (
-    id INTEGER PRIMARY KEY
+    id INTEGER AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE Customer (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(80) NOT NULL,
     email VARCHAR(80),
     address_id INTEGER NOT NULL
@@ -26,13 +26,13 @@ CREATE TABLE Customer_PaymentMethod (
 );
 
 CREATE TABLE AuctionSite (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(32) NOT NULL,
     siteURL VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE AuctionSiteCredentials (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     auctionSite_id INTEGER NOT NULL,
     userName VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
@@ -40,7 +40,7 @@ CREATE TABLE AuctionSiteCredentials (
 
 
 CREATE TABLE PayMateDetails (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     userName VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );

@@ -42,7 +42,7 @@ class PersistentCustomerBaseTest {
 
 
     private fun date(date: String): LocalDate {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd MMM yyyy"))
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("d MMM yyyy"))
     }
 
     private fun addCustomers(vararg customers: CustomerBuilder) {
