@@ -15,31 +15,31 @@ class CustomerBuilder : AbstractBuilder<CustomerBuilder, Customer>() {
     private var paymentMethods: Set<Builder<out PaymentMethod>> = emptySet()
     private var auctionSitesUsed: Set<Builder<out AuctionSiteCredentials>> = emptySet()
 
-    fun withName(name: String): CustomerBuilder? {
+    fun withName(name: String): CustomerBuilder {
         val other = clone()
         other.name = name
         return other
     }
 
-    fun withEmailAddress(email: String): CustomerBuilder? {
+    fun withEmailAddress(email: String): CustomerBuilder {
         val other = clone()
         other.email = email
         return other
     }
 
-    fun withAddress(addressBuilder: Builder<Address>): CustomerBuilder? {
+    fun withAddress(addressBuilder: Builder<Address>): CustomerBuilder {
         val other = clone()
         other.addressBuilder = addressBuilder
         return other
     }
 
-    fun withPaymentMethods(vararg paymentMethodBuilders: Builder<out PaymentMethod>): CustomerBuilder? {
+    fun withPaymentMethods(vararg paymentMethodBuilders: Builder<out PaymentMethod>): CustomerBuilder {
         val other = clone()
         other.paymentMethods = setOf<PaymentMethod>(*paymentMethodBuilders)
         return other
     }
 
-    fun usingAuctionSites(vararg auctionSiteLoginBuilders: Builder<AuctionSiteCredentials>): CustomerBuilder? {
+    fun usingAuctionSites(vararg auctionSiteLoginBuilders: Builder<AuctionSiteCredentials>): CustomerBuilder {
         val other = clone()
         other.auctionSitesUsed = setOf<AuctionSiteCredentials>(*auctionSiteLoginBuilders)
         return other
