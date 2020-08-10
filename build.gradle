@@ -1,4 +1,3 @@
-
 buildscript {
     ext.kotlin_version = "1.3.72"
     ext.tornadofx_version = "1.7.17"
@@ -13,18 +12,24 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.junit.platform:junit-platform-gradle-plugin:1.2.0"
+
     }
 }
 
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.4.0-rc'
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.3.72"
 }
 
 apply plugin: "kotlin"
 apply plugin: "application"
 apply plugin: "org.junit.platform.gradle.plugin"
+apply plugin: "kotlin-allopen"
 
+allOpen {
+    annotation("javax.persistence.Entity")
+}
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -47,7 +52,6 @@ dependencies {
     testCompile "org.testcontainers:junit-jupiter:1.14.3"
     testCompile "org.testcontainers:mysql:1.14.3"
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
-
 
     compile group: 'org.hibernate', name: 'hibernate-core', version: '6.0.0.Alpha5'
     testCompile group: 'org.hibernate', name: 'hibernate-testing', version: '6.0.0.Alpha5'

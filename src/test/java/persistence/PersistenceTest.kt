@@ -18,11 +18,11 @@ class PersistenceTest {
 
 
     @Test fun simple_test() {
-        val  address = Address(23, "", "", "", "")
+        val  address = Address(0, "", "", "", "")
 
         entityManager.persist(address);
 
-        val fromDB = entityManager.find(Address::class.java, 23)
+        val fromDB = entityManager.find(Address::class.java, address.id)
 
         assertThat(fromDB).isEqualTo(address)
     }
