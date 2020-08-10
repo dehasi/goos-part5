@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 interface CustomerBase {
 
-    fun addCustomer(user: Customer)
+    fun addCustomer(customer: Customer)
 
     fun customersWithExpiredCreditCardsAsOf(deadline: LocalDateTime): List<Customer>
 }
