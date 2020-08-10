@@ -21,7 +21,8 @@ class PersistenceTest {
         val address = Address(0, "Hogeweg 106", "Amsterdam", "Netherlands", "1034HF")
         entityManager.persist(address);
 
-        val fromDB = entityManager.find(Address::class.java, address.id)
+        val fromDB = entityManager.find(Address::class.java, address.id+1)
+    val  a:   List<Address>  = entityManager.createQuery("SELECT a FROM Address a").getResultList() as List<Address>;
 
         assertThat(fromDB).isEqualTo(address)
     }
