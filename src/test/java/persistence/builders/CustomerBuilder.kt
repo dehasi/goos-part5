@@ -1,4 +1,4 @@
 package persistence.builders
 
-class CustomerBuilder: {
+class CustomerBuilder {
 }

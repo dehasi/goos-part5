@@ -10,25 +10,25 @@ class AddressBuilder : AbstractBuilder<AddressBuilder, Address>() {
     private var postCode = "BG1 2FO"
 
     fun withStreet(street: String): AddressBuilder {
-        val other: AddressBuilder = clone()
+        val other = clone()
         other.street = street
         return other
     }
 
     fun withTown(town: String): AddressBuilder {
-        val other: AddressBuilder = clone()
+        val other = clone()
         other.town = town
         return other
     }
 
     fun withCountry(country: String): AddressBuilder {
-        val other: AddressBuilder = clone()
+        val other = clone()
         other.country = country
         return other
     }
 
     fun withPostCode(postCode: String): AddressBuilder {
-        val other: AddressBuilder = clone()
+        val other = clone()
         other.postCode = postCode
         return other
     }
