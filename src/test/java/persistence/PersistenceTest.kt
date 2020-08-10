@@ -19,7 +19,6 @@ class PersistenceTest {
 
     @Test fun simple_test() {
         val address = Address(0, "Hogeweg 106", "Amsterdam", "Netherlands", "1034HF")
-
         entityManager.persist(address);
 
         val fromDB = entityManager.find(Address::class.java, address.id)
