@@ -46,7 +46,7 @@ CREATE TABLE PayMateDetails (
 );
 
 CREATE TABLE Address (
-    id INTEGER PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     street VARCHAR(255),
     town VARCHAR(255),
     postcode VARCHAR(255),

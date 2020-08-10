@@ -20,7 +20,7 @@
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:tc:mysql:5.7://doesntmatter/test?TC_INITSCRIPT=example-db.ddl"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="packagesToScan" value="persistence.model"/>
+<!--            <property name="packagesToScan" value="persistence.model"/>-->
         </properties>
     </persistence-unit>
 </persistence>
