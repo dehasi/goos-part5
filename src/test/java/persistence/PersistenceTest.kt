@@ -12,7 +12,7 @@ class PersistenceTest {
     private var entityManager = Persistence.createEntityManagerFactory("GOOS")
         .createEntityManager()
 
-    @Before @Throws(Exception::class) fun cleanDatabase() {
+    @Before fun cleanDatabase() {
         DatabaseCleaner(entityManager).clean()
     }
 

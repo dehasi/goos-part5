@@ -2,14 +2,14 @@ package persistence.model
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType.AUTO
+import javax.persistence.GenerationType.IDENTITY
 import javax.persistence.Id
 
 
 @Entity
 data class Address(
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     val id: Int,
     val street: String,
     val town: String,
