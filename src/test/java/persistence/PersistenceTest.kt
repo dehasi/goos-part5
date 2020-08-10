@@ -25,7 +25,7 @@ class PersistenceTest {
         transaction.commit()
 
         val fromDB = entityManager.find(Address::class.java, address.id)
-        val addresses: List<Address> = entityManager.createQuery("SELECT a FROM Address a").getResultList() as List<Address>;
+        @Suppress("UNCHECKED_CAST") val addresses: List<Address> = entityManager.createQuery("SELECT a FROM Address a").resultList as List<Address>;
 
         assertThat(addresses).hasSize(1)
         assertThat(fromDB).isEqualTo(address)
