@@ -26,7 +26,7 @@ class StubAuctionHouse : AuctionHouse {
         searchResults[keywords] = results
     }
 
-    override fun findAuctions(keywords: Set<String>): List<AuctionDescription> {
+    override fun findAuctions(keywords: Iterable<String>): List<AuctionDescription> {
         return searchResults.getOrDefault(keywords, emptyList())
     }
 
