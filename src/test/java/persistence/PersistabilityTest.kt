@@ -11,7 +11,6 @@ import persistence.builders.Builder
 import persistence.builders.CreditCardDetailsBuilder
 import persistence.builders.CustomerBuilder
 import persistence.builders.PayMateDetailsBuilder
-import persistence.model.AuctionSite
 import javax.persistence.Persistence
 import javax.persistence.PersistenceException
 
@@ -78,8 +77,14 @@ class PersistabilityTest {
         TODO("Not yet implemented")
     }
 
-    private fun persisted(auctionSiteBuilder: AuctionSiteBuilder): Builder<AuctionSite> {
-        TODO("Not yet implemented")
+    private fun <TYPE> persisted(builder: Builder<TYPE>): Builder<TYPE> {
+        return object : Builder<TYPE> {
+            override fun build(): TYPE {
+                val entity = builder.build()
+                entityManager.persist(entity);
+                return entity
+            }
+        }
     }
 
     private fun typeNameFor(builder: Builder<*>) =
