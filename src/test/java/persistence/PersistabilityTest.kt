@@ -11,6 +11,8 @@ import persistence.builders.Builder
 import persistence.builders.CreditCardDetailsBuilder
 import persistence.builders.CustomerBuilder
 import persistence.builders.PayMateDetailsBuilder
+import java.lang.reflect.Field
+import javax.persistence.Id
 import javax.persistence.Persistence
 import javax.persistence.PersistenceException
 
@@ -23,7 +25,7 @@ class PersistabilityTest {
 
     private val persistentObjectBuilders: List<Builder<*>> = listOf(
         AddressBuilder(),
-        PayMateDetailsBuilder(),
+//        PayMateDetailsBuilder(),
         CreditCardDetailsBuilder(),
         AuctionSiteBuilder(),
         AuctionSiteLoginBuilder().forSite(persisted(AuctionSiteBuilder())),
@@ -68,14 +70,12 @@ class PersistabilityTest {
         transactor.perform(object : UnitOfWork {
             override fun work() {
                 assertThat(entityManager.find(original.javaClass, idOf(original)))
+                    .`as`("for entity ${original.javaClass.simpleName}")
                     .isEqualToComparingFieldByField(original)
             }
         })
     }
 
-    private fun idOf(original: Any): Any? {
-        TODO("Not yet implemented")
-    }
 
     private fun <TYPE> persisted(builder: Builder<TYPE>): Builder<TYPE> {
         return object : Builder<TYPE> {
@@ -87,12 +87,36 @@ class PersistabilityTest {
         }
     }
 
-    private fun typeNameFor(builder: Builder<*>) =
-        builder.javaClass.simpleName.replace("Builder", "")
-
-
     @After fun tearDown() {
         entityManager.close()
         factory.close()
+    }
+
+    private companion object {
+        fun idOf(entity: Any): Any? {
+            var c: Class<*> = entity.javaClass
+            while (c != Any::class.java) {
+                for (field in c.declaredFields) {
+                    if (field.isAnnotationPresent(Id::class.java)) {
+                        return fieldValue(entity, field)
+                    }
+                }
+                c = c.superclass
+            }
+            throw IllegalArgumentException("$entity does not have an entity id")
+        }
+
+        private fun fieldValue(entity: Any, field: Field): Any? {
+            field.isAccessible = true
+            return try {
+                field.get(entity)
+            } catch (e: IllegalAccessException) {
+                throw Error("could not access accessible field $field")
+            }
+        }
+
+        private fun typeNameFor(builder: Builder<*>) =
+            builder.javaClass.simpleName.replace("Builder", "")
+
     }
 }
