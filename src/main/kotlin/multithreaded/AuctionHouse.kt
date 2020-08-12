@@ -1,8 +1,8 @@
 package multithreaded
 
-open class AuctionHouse {
+interface AuctionHouse {
 
-    fun findAuctions(keywords: Iterable<String>): Any {
-        TODO("Not yet implemented")
-    }
+    fun findAuctions(keywords: Set<String>): List<AuctionDescription>
+
+    fun joinAuction(auctionId: String): Auction
 }

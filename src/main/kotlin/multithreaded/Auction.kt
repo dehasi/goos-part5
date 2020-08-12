@@ -1,0 +1,4 @@
+package multithreaded
+
+interface Auction {
+}
