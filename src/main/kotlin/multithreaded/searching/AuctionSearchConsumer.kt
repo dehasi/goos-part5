@@ -1,4 +1,4 @@
-package multithreaded
+package multithreaded.searching
 
 interface AuctionSearchConsumer {
 

@@ -1,5 +1,8 @@
 package multithreaded
 
+import multithreaded.searching.Auction
+import multithreaded.searching.AuctionDescription
+import multithreaded.searching.AuctionHouse
 import java.util.*
 
 

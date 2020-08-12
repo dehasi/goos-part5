@@ -1,6 +1,10 @@
 package multithreaded
 
 import io.mockk.mockk
+import multithreaded.searching.AuctionDescription
+import multithreaded.searching.AuctionHouse
+import multithreaded.searching.AuctionSearch
+import multithreaded.searching.AuctionSearchConsumer
 import org.junit.jupiter.api.Test
 
 class AuctionSearchTest {

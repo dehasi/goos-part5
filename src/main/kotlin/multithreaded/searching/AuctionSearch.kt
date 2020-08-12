@@ -1,4 +1,6 @@
-package multithreaded
+package multithreaded.searching
+
+import multithreaded.Executor
 
 class AuctionSearch(
     private val executor: Executor,
@@ -23,7 +25,7 @@ class AuctionSearch(
         consumer.auctionSearchFound(auctionHouse.findAuctions(keywords))
 
         runningSearchCount--
-        if(runningSearchCount == 0) {
+        if (runningSearchCount == 0) {
             consumer.auctionSearchFinished()
         }
     }
