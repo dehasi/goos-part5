@@ -1,4 +1,4 @@
-package jpa
+package persistence.jpa
 
 import persistence.model.Customer
 import persistence.model.CustomerBase

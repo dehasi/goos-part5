@@ -1,6 +1,5 @@
 package persistence
 
-import jpa.PersistentCustomerBase
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Before
@@ -8,6 +7,7 @@ import org.junit.jupiter.api.Test
 import persistence.builders.CreditCardDetailsBuilder.Companion.aCreditCard
 import persistence.builders.CustomerBuilder
 import persistence.builders.CustomerBuilder.Companion.aCustomer
+import persistence.jpa.PersistentCustomerBase
 import persistence.model.Customer
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
