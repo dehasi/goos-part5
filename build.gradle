@@ -39,25 +39,26 @@ repositories {
 }
 
 dependencies {
-    testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.19.Final'
 
-    testCompile group: 'io.mockk', name: 'mockk', version: '1.10.0'
-
+    testCompile "io.mockk:mockk:1.10.0"
     testCompile "org.assertj:assertj-core:3.11.1"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.6.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
-    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.6.2")
-    testCompile "org.testcontainers:testcontainers:1.14.3"
+    testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    testCompile "org.hibernate:hibernate-testing:5.4.19.Final"
     testCompile "org.testcontainers:junit-jupiter:1.14.3"
     testCompile "org.testcontainers:mysql:1.14.3"
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    testCompile "org.testcontainers:testcontainers:1.14.3"
 
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.19.Final'
-    testCompile group: 'org.hibernate', name: 'hibernate-testing', version: '5.4.19.Final'
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.6.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.6.2"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
