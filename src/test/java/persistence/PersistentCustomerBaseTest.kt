@@ -30,12 +30,12 @@ class PersistentCustomerBaseTest {
         addCustomers(
             aCustomer().withName("Alice (Expired)")
                 .withPaymentMethods(aCreditCard().withExpiryDate(date("1 Jan 2009"))),
-//            aCustomer().withName("Bob (Expired)")
-//                .withPaymentMethods(aCreditCard().withExpiryDate(date("5 Jun 2009"))),
-//            aCustomer().withName("Carol (Valid)")
-//                .withPaymentMethods(aCreditCard().withExpiryDate(date(deadLine))),
-//            aCustomer().withName("Dave (Valid)")
-//                .withPaymentMethods(aCreditCard().withExpiryDate(date("7 Jun 2009"))),
+            aCustomer().withName("Bob (Expired)")
+                .withPaymentMethods(aCreditCard().withExpiryDate(date("5 Jun 2009"))),
+            aCustomer().withName("Carol (Valid)")
+                .withPaymentMethods(aCreditCard().withExpiryDate(date(deadLine))),
+            aCustomer().withName("Dave (Valid)")
+                .withPaymentMethods(aCreditCard().withExpiryDate(date("7 Jun 2009"))),
         )
 
     }
