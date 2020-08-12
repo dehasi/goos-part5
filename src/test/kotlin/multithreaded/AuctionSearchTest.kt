@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test
 
 class AuctionSearchTest {
     private val executor = DeterministicExecutor()
-    private val houseA: AuctionHouse = StubAuctionHouse("houseA")
-    private val houseB: AuctionHouse = StubAuctionHouse("houseB")
+    private val houseA = StubAuctionHouse("houseA")
+    private val houseB = StubAuctionHouse("houseB")
 
     private val resultsFromA = listOf(auction(houseA, "1"))
     private val resultsFromB = listOf(auction(houseB, "2"))
@@ -27,7 +27,6 @@ class AuctionSearchTest {
 
     private fun houses(vararg houses: AuctionHouse) = listOf(*houses)
 
-    private fun auction(house: AuctionHouse, s: String): AuctionDescription {
-        TODO("Not yet implemented")
-    }
+    private fun auction(house: AuctionHouse, id: String) =
+        AuctionDescription(house, id, "test auction")
 }
