@@ -1,4 +1,0 @@
-package multithreaded
-
-class AuctionDescriptor {
-}
