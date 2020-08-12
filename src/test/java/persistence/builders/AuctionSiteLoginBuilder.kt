@@ -12,13 +12,13 @@ class AuctionSiteLoginBuilder : AbstractBuilder<AuctionSiteLoginBuilder, Auction
     private var auctionSiteBuilder: Builder<AuctionSite> = AuctionSiteBuilder()
     private var authorisationBuilder: Builder<Authorisation> = AuthorisationBuilder()
 
-    fun forSite(auctionSiteBuilder: Builder<AuctionSite>): AuctionSiteLoginBuilder? {
+    fun forSite(auctionSiteBuilder: Builder<AuctionSite>): AuctionSiteLoginBuilder {
         val other = clone()
         other.auctionSiteBuilder = auctionSiteBuilder
         return other
     }
 
-    fun with(authorisationBuilder: AuthorisationBuilder): AuctionSiteLoginBuilder? {
+    fun with(authorisationBuilder: AuthorisationBuilder): AuctionSiteLoginBuilder {
         val other = clone()
         other.authorisationBuilder = authorisationBuilder
         return other
