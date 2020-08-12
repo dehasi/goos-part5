@@ -1,4 +1,8 @@
 package multithreaded
 
-class AuctionSearch {
+class AuctionSearch(
+    private val executor: Executor,
+houses:Collection<AuctionHouse>,
+
+                    ) {
 }
