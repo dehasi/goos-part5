@@ -1,7 +1,8 @@
 package multithreaded
 
 open class AuctionHouse {
-    fun willReturnSearchResults(keywords: Set<String>, resultsFromA: List<AuctionDescription>) {
+
+    fun findAuctions(keywords: Iterable<String>): Any {
         TODO("Not yet implemented")
     }
 }
