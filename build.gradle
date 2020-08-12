@@ -53,8 +53,8 @@ dependencies {
     testCompile "org.testcontainers:mysql:1.14.3"
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
 
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '6.0.0.Alpha5'
-    testCompile group: 'org.hibernate', name: 'hibernate-testing', version: '6.0.0.Alpha5'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.19.Final'
+    testCompile group: 'org.hibernate', name: 'hibernate-testing', version: '5.4.19.Final'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }

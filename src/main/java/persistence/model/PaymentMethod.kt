@@ -12,7 +12,7 @@ import javax.persistence.InheritanceType.JOINED
 @Entity
 @Inheritance(strategy = JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = STRING)
-open class PaymentMethod(
+abstract class PaymentMethod(
     @Id
     @GeneratedValue(strategy = IDENTITY)
     open val id: Int)
