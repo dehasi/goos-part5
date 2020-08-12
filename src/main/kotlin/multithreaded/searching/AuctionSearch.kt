@@ -1,6 +1,6 @@
 package multithreaded.searching
 
-import multithreaded.Executor
+import java.util.concurrent.Executor
 
 class AuctionSearch(
     private val executor: Executor,

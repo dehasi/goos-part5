@@ -15,7 +15,7 @@ class AuctionSearchTest {
     private val resultsFromA = listOf(auction(houseA, "1"))
     private val resultsFromB = listOf(auction(houseB, "2"))
 
-    private val consumer: AuctionSearchConsumer = mockk()
+    private val consumer: AuctionSearchConsumer = mockk(relaxUnitFun = true)
     private val search = AuctionSearch(executor, houses(houseA, houseB), consumer)
 
     @Test fun `searches all auction houses`() {
