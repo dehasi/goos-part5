@@ -1,12 +1,14 @@
 package persistence
 
 import jpa.PersistentCustomerBase
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Before
 import org.junit.jupiter.api.Test
 import persistence.builders.CreditCardDetailsBuilder.Companion.aCreditCard
 import persistence.builders.CustomerBuilder
 import persistence.builders.CustomerBuilder.Companion.aCustomer
+import persistence.model.Customer
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.persistence.Persistence
@@ -38,6 +40,7 @@ class PersistentCustomerBaseTest {
                 .withPaymentMethods(aCreditCard().withExpiryDate(date("7 Jun 2009"))),
         )
 
+        assertCustomersExpiresOn(date(deadLine), List<Customer>::isNotEmpty)
     }
 
 
@@ -51,6 +54,14 @@ class PersistentCustomerBaseTest {
                 customers.forEach {
                     customerBase.addCustomer(it.build())
                 }
+            }
+        })
+    }
+
+    private fun assertCustomersExpiresOn(date: LocalDate, predicate: (List<Customer>) -> Boolean) {
+        transactor.perform(object : UnitOfWork {
+            override fun work() {
+                assertThat(customerBase.customersWithExpiredCreditCardsAsOf(date)).matches(predicate)
             }
         })
     }
