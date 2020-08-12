@@ -51,9 +51,9 @@ class PersistentCustomerBaseTest {
 
     private fun customerWithName(name: String): (Customer) -> Boolean = { it.name == name }
 
-    private fun contains(vararg predictes: (Customer) -> Boolean): (List<Customer>) -> Boolean {
+    private fun contains(vararg predicates: (Customer) -> Boolean): (List<Customer>) -> Boolean {
         return { customers ->
-            predictes.map { customers.any(it) }.all { it == true }
+            predicates.map { customers.any(it) }.all { it }
         }
     }
 
