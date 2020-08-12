@@ -41,20 +41,7 @@ class PersistentCustomerBaseTest {
         )
 
         assertCustomersExpiresOn(date(deadLine), List<Customer>::isNotEmpty)
-        assertCustomersExpiresOn(date(deadLine), contains(customerWithName("Alice (Expired)"), customerWithName("Bob (Expired)")))
-    }
-
-
-    private fun date(date: String): LocalDate {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("d MMM yyyy"))
-    }
-
-    private fun customerWithName(name: String): (Customer) -> Boolean = { it.name == name }
-
-    private fun contains(vararg predicates: (Customer) -> Boolean): (List<Customer>) -> Boolean {
-        return { customers ->
-            predicates.map { customers.any(it) }.all { it }
-        }
+        assertCustomersExpiresOn(date(deadLine), containsOnly(customerWithName("Alice (Expired)"), customerWithName("Bob (Expired)")))
     }
 
     private fun addCustomers(vararg customers: CustomerBuilder) {
@@ -73,6 +60,18 @@ class PersistentCustomerBaseTest {
                 assertThat(customerBase.customersWithExpiredCreditCardsAsOf(date)).matches(predicate)
             }
         })
+    }
+
+    private fun date(date: String): LocalDate {
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("d MMM yyyy"))
+    }
+
+    private fun customerWithName(name: String): (Customer) -> Boolean = { it.name == name }
+
+    private fun containsOnly(vararg predicates: (Customer) -> Boolean): (List<Customer>) -> Boolean {
+        return { customers ->
+            predicates.map { customers.any(it) }.all { it }
+        }
     }
 
     @After fun tearDown() {
