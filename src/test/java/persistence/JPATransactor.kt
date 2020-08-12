@@ -18,4 +18,9 @@ class JPATransactor(private val entityManager: EntityManager) {
             throw e
         }
     }
+
+    fun <T> performQuery(query: QueryUnitOfWork<T>): T {
+        perform(query)
+        return query.result!!
+    }
 }

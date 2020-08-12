@@ -2,7 +2,7 @@ package persistence
 
 abstract class QueryUnitOfWork<T> : UnitOfWork {
 
-    private var result: T? = null
+    var result: T? = null
 
     abstract fun query(): T
 

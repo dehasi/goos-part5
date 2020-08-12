@@ -1,7 +1,9 @@
 package persistence
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Before
+import org.junit.jupiter.api.Test
 import persistence.builders.AddressBuilder
 import persistence.builders.AuctionSiteBuilder
 import persistence.builders.AuctionSiteLoginBuilder
@@ -11,6 +13,7 @@ import persistence.builders.CustomerBuilder
 import persistence.builders.PayMateDetailsBuilder
 import persistence.model.AuctionSite
 import javax.persistence.Persistence
+import javax.persistence.PersistenceException
 
 
 class PersistabilityTest {
@@ -19,7 +22,7 @@ class PersistabilityTest {
     private var entityManager = factory.createEntityManager()
     private val transactor = JPATransactor(entityManager)
 
-    val persistentObjectBuilders: List<Builder<*>> = listOf(
+    private val persistentObjectBuilders: List<Builder<*>> = listOf(
         AddressBuilder(),
         PayMateDetailsBuilder(),
         CreditCardDetailsBuilder(),
@@ -33,13 +36,54 @@ class PersistabilityTest {
                 PayMateDetailsBuilder()))
 
 
+    @Before fun cleanDatabase() {
+        DatabaseCleaner(entityManager).clean()
+    }
+
+    @Test fun `round trip persistent objects`() {
+        persistentObjectBuilders.forEach {
+            assertCanBePersisted(it);
+        }
+    }
+
+    private fun assertCanBePersisted(builder: Builder<*>) {
+        try {
+            assertReloadWithSameStateAs(persistedObjectFrom(builder))
+        } catch (e: PersistenceException) {
+            throw PersistenceException("Could not round-trip " + typeNameFor(builder), e)
+        }
+    }
+
+    private fun persistedObjectFrom(builder: Builder<*>): Any {
+        return transactor.performQuery(object : QueryUnitOfWork<Any>() {
+            override fun query(): Any {
+                // Build the saved object in the transaction so any sub-builders can do database activity if necessary
+                val saved = builder.build()!!
+                entityManager.persist(saved)
+                return saved
+            }
+        })
+    }
+
+    private fun assertReloadWithSameStateAs(original: Any) {
+        transactor.perform(object : UnitOfWork {
+            override fun work() {
+                assertThat(entityManager.find(original.javaClass, idOf(original)))
+                    .isEqualToComparingFieldByField(original)
+            }
+        })
+    }
+
+    private fun idOf(original: Any): Any? {
+        TODO("Not yet implemented")
+    }
+
     private fun persisted(auctionSiteBuilder: AuctionSiteBuilder): Builder<AuctionSite> {
         TODO("Not yet implemented")
     }
 
-    @Before fun cleanDatabase() {
-        DatabaseCleaner(entityManager).clean()
-    }
+    private fun typeNameFor(builder: Builder<*>) =
+        builder.javaClass.simpleName.replace("Builder", "")
 
 
     @After fun tearDown() {
