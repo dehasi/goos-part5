@@ -41,11 +41,20 @@ class PersistentCustomerBaseTest {
         )
 
         assertCustomersExpiresOn(date(deadLine), List<Customer>::isNotEmpty)
+        assertCustomersExpiresOn(date(deadLine), contains(customerWithName("Alice (Expired)"), customerWithName("Bob (Expired)")))
     }
 
 
     private fun date(date: String): LocalDate {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern("d MMM yyyy"))
+    }
+
+    private fun customerWithName(name: String): (Customer) -> Boolean = { it.name == name }
+
+    private fun contains(vararg predictes: (Customer) -> Boolean): (List<Customer>) -> Boolean {
+        return { customers ->
+            predictes.map { customers.any(it) }.all { it == true }
+        }
     }
 
     private fun addCustomers(vararg customers: CustomerBuilder) {
