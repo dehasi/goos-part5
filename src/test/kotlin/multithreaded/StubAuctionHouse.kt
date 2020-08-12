@@ -1,6 +1,6 @@
 package multithreaded
 
-class StubAuctionHouse(private val name: String) {
+class StubAuctionHouse(private val name: String) : AuctionHouse() {
 
 
 }
