@@ -13,7 +13,7 @@ data class AuctionSiteCredentials(
     @GeneratedValue(strategy = IDENTITY)
     val id: Int,
     @ManyToOne
-    val site: AuctionSite,
+    val auctionSite: AuctionSite,
     @Embedded
     val auth: Authorisation
 )
