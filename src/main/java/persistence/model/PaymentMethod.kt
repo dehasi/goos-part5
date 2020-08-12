@@ -9,7 +9,6 @@ import javax.persistence.InheritanceType.JOINED
 
 @Entity
 @Inheritance(strategy = JOINED)
-//@DiscriminatorColumn(name = "type", discriminatorType = STRING)
 abstract class PaymentMethod(
     @Id
     @GeneratedValue(strategy = IDENTITY)
