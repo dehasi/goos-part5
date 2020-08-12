@@ -25,7 +25,7 @@ class PersistabilityTest {
 
     private val persistentObjectBuilders: List<Builder<*>> = listOf(
         AddressBuilder(),
-//        PayMateDetailsBuilder(),
+        PayMateDetailsBuilder(),
         CreditCardDetailsBuilder(),
         AuctionSiteBuilder(),
         AuctionSiteLoginBuilder().forSite(persisted(AuctionSiteBuilder())),
@@ -93,6 +93,7 @@ class PersistabilityTest {
     }
 
     private companion object {
+
         fun idOf(entity: Any): Any? {
             var c: Class<*> = entity.javaClass
             while (c != Any::class.java) {
