@@ -1,6 +1,5 @@
-# Growing Object-Oriented Software Guided by Tests
-
-Kotlin examples
+# Kotlin examples
+## Growing Object-Oriented Software Guided by Tests
 
 ### Examples from Advanced Topics Parts
 
