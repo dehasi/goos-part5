@@ -45,7 +45,7 @@ class AuctionSearchStressTest {
     private fun completeASearch() {
         search.search(keywords)
 
-        verify(exactly = 1) {
+        verify {
             consumer.auctionSearchFinished()
         }
     }
