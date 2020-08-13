@@ -4,8 +4,8 @@ import io.mockk.mockk
 import io.mockk.verifyOrder
 import multithreaded.searching.AuctionDescription
 import multithreaded.searching.AuctionHouse
-import multithreaded.searching.AuctionSearch
 import multithreaded.searching.AuctionSearchConsumer
+import multithreaded.searching.AuctionSearchFixedRaceCondition
 import org.junit.jupiter.api.Test
 
 class AuctionSearchTest {
@@ -17,7 +17,9 @@ class AuctionSearchTest {
     private val resultsFromB = listOf(auction(houseB, "2"))
 
     private val consumer: AuctionSearchConsumer = mockk(relaxUnitFun = true)
-    private val search = AuctionSearch(executor, houses(houseA, houseB), consumer)
+
+    // private val search = AuctionSearch(executor, houses(houseA, houseB), consumer)
+    private val search = AuctionSearchFixedRaceCondition(executor, houses(houseA, houseB), consumer)
 
     @Test fun `searches all auction houses`() {
         val keywords = setOf("sheep", "cheese")
