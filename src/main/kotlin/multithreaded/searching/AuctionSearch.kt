@@ -16,15 +16,15 @@ class AuctionSearch(
     }
 
     private fun startSearching(auctionHouse: AuctionHouse, keywords: Iterable<String>) {
-        runningSearchCount++
+        ++runningSearchCount
 
-        executor.execute(Runnable { search(auctionHouse, keywords) })
+        executor.execute { search(auctionHouse, keywords) }
     }
 
     private fun search(auctionHouse: AuctionHouse, keywords: Iterable<String>) {
         consumer.auctionSearchFound(auctionHouse.findAuctions(keywords))
 
-        runningSearchCount--
+        --runningSearchCount
         if (runningSearchCount == 0) {
             consumer.auctionSearchFinished()
         }

@@ -1,4 +1,3 @@
 package multithreaded.searching
 
-interface Auction {
-}
+interface Auction {}
