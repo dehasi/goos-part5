@@ -1,4 +1,4 @@
-package multithreaded
+package multithreaded.executor
 
 import io.mockk.mockk
 import io.mockk.verify

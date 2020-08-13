@@ -1,4 +1,4 @@
-package multithreaded
+package multithreaded.executor
 
 import multithreaded.searching.Auction
 import multithreaded.searching.AuctionDescription

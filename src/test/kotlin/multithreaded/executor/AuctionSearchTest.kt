@@ -1,4 +1,4 @@
-package multithreaded
+package multithreaded.executor
 
 import io.mockk.mockk
 import io.mockk.verifyOrder
@@ -18,7 +18,7 @@ class AuctionSearchTest {
 
     private val consumer: AuctionSearchConsumer = mockk(relaxUnitFun = true)
 
-     private val search = AuctionSearch(executor, houses(houseA, houseB), consumer)
+    private val search = AuctionSearch(executor, houses(houseA, houseB), consumer)
 
     @Test fun `searches all auction houses`() {
         val keywords = setOf("sheep", "cheese")

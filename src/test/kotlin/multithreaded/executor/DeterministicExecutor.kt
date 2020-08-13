@@ -1,4 +1,4 @@
-package multithreaded
+package multithreaded.executor
 
 import java.util.concurrent.Executor
 
