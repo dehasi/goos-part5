@@ -19,7 +19,6 @@ class AuctionSearchFixRaceCondition(
 
     private fun startSearching(auctionHouse: AuctionHouse, keywords: Iterable<String>) {
         // no more increments thr count here
-
         executor.execute { search(auctionHouse, keywords) }
     }
 
