@@ -3,7 +3,7 @@ package multithreaded.searching
 import java.util.concurrent.Executor
 import java.util.concurrent.atomic.AtomicInteger
 
-class AuctionSearchFixedRaceCondition(
+class AuctionSearchWithAtomicInteger(
     private val executor: Executor,
     private val auctionHouses: Collection<AuctionHouse>,
     private val consumer: AuctionSearchConsumer) {
