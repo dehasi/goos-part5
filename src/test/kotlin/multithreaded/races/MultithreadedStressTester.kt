@@ -3,6 +3,9 @@ package multithreaded.races
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors.newCachedThreadPool
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
+
 
 class MultithreadedStressTester(
     private val iterationCount: Int,
@@ -11,8 +14,14 @@ class MultithreadedStressTester(
 
     fun totalActionCount() = threadCount * iterationCount
 
-    fun stress(runnable: Runnable) {
-        executor.execute(runnable)
+    fun stress(action: Runnable) {
+        spawnThreads(action).await()
+    }
+
+    fun blitz(timeoutMs: Long, action: Runnable) {
+        if (!spawnThreads(action).await(timeoutMs, TimeUnit.MILLISECONDS)) {
+            throw TimeoutException("timed out waiting for blitzed actions to complete successfully")
+        }
     }
 
     private fun spawnThreads(action: Runnable): CountDownLatch {
@@ -27,9 +36,7 @@ class MultithreadedStressTester(
                 }
             }
         }
-
         return finished
-
     }
 
     private fun repeatAction(action: Runnable) {

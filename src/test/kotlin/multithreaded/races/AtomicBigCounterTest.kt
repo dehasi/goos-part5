@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class AtomicBigCounterTest {
 
-    val counter = AtomicBigCounter()
+    private val counter = AtomicBigCounter()
 
     @Test fun `can increment counter from multiple threads simultaneously`() {
         val stressTester = MultithreadedStressTester(50_000)
