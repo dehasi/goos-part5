@@ -39,7 +39,7 @@ class AuctionSearchStressTest {
     }
 
     @Test fun `only one auction search finished not notification present`() {
-        for (i in 0..numberOfSearches) completeASearch()
+        for (i in 0 until numberOfSearches) completeASearch()
     }
 
     private fun completeASearch() {
