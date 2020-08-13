@@ -1,6 +1,7 @@
 package multithreaded
 
 import io.mockk.mockk
+import io.mockk.verifyOrder
 import multithreaded.searching.AuctionDescription
 import multithreaded.searching.AuctionHouse
 import multithreaded.searching.AuctionSearch
@@ -26,8 +27,13 @@ class AuctionSearchTest {
 
         search.search(keywords)
         executor.runUntilIdle()
-    }
 
+        verifyOrder {
+            consumer.auctionSearchFound(resultsFromA)
+            consumer.auctionSearchFound(resultsFromB)
+            consumer.auctionSearchFinished()
+        }
+    }
 
     private fun houses(vararg houses: AuctionHouse) = listOf(*houses)
 
