@@ -5,7 +5,7 @@ import io.mockk.verify
 import multithreaded.searching.AuctionDescription
 import multithreaded.searching.AuctionHouse
 import multithreaded.searching.AuctionSearchConsumer
-import multithreaded.searching.AuctionSearchWithAtomicInteger
+import multithreaded.searching.AuctionSearchFixRaceCondition
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import java.util.concurrent.Executors
@@ -21,8 +21,9 @@ class AuctionSearchStressTest {
 
     private val executor = Executors.newCachedThreadPool()
 
-    //    private val search = AuctionSearch(executor, auctionHouses(), consumer)
-    private val search = AuctionSearchWithAtomicInteger(executor, auctionHouses(), consumer)
+    // private val search = AuctionSearch(executor, auctionHouses(), consumer)
+    // private val search = AuctionSearchWithAtomicInteger(executor, auctionHouses(), consumer)
+    private val search = AuctionSearchFixRaceCondition(executor, auctionHouses(), consumer)
 
     private fun auctionHouses(): Collection<AuctionHouse> {
         val auctionHouses = mutableListOf<AuctionHouse>()
