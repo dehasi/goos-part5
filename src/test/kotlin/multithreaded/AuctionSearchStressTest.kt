@@ -1,11 +1,13 @@
 package multithreaded
 
 import io.mockk.mockk
+import io.mockk.verify
 import multithreaded.searching.AuctionDescription
 import multithreaded.searching.AuctionHouse
 import multithreaded.searching.AuctionSearch
 import multithreaded.searching.AuctionSearchConsumer
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Test
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit.SECONDS
 
@@ -31,6 +33,18 @@ class AuctionSearchStressTest {
         house.willReturnSearchResults(
             keywords, listOf(AuctionDescription(house, "id $id", "description")))
         return house
+    }
+
+    @Test fun `only one auction search finished not notification present`() {
+        for (i in 0..numberOfSearches) completeASearch()
+    }
+
+    private fun completeASearch() {
+        search.search(keywords)
+
+        verify(exactly = 1) {
+            consumer.auctionSearchFinished()
+        }
     }
 
     @AfterEach fun `shut down executor`() {
