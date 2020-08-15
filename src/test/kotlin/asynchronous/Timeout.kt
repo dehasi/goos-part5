@@ -14,5 +14,4 @@ class Timeout(durationMillis: Long) {
     }
 
     private fun timeRemaining() = endTime - currentTimeMillis()
-
 }
