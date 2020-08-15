@@ -23,6 +23,29 @@ abstract class Maybe<T> : Iterable<T> {
                 override fun query(mapping: Predicate<in T>): Maybe<Boolean> = unknown()
 
                 override fun iterator() = listOf<T>().iterator()
+
+                override fun toString() = "unknown"
+                override fun equals(other: Any?) = false
+                override fun hashCode() = 0
+            }
+        }
+
+        fun <T> definitely(value: T): Maybe<T> {
+            return object : Maybe<T>() {
+                override fun isKnown() = true
+                override fun otherwise(defaultValue: T) = value
+
+                override fun otherwise(maybeDefaultValue: Maybe<T>) = this
+
+                override fun <U> to(mapping: Function<in T, out U>) = definitely(mapping.apply(value))
+
+                override fun query(mapping: Predicate<in T>) = definitely(mapping.test(value))
+
+                override fun iterator() = listOf<T>(value).iterator()
+
+                override fun toString() = "definitely $value"
+                override fun equals(other: Any?) = other == value
+                override fun hashCode() = value.hashCode()
             }
         }
     }
