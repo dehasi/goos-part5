@@ -1,4 +1,6 @@
-package asynchronous
+package asynchronous.notification
+
+import asynchronous.Timeout
 
 class NotificationTrace<NOTIFICATION>(private val timeOutMs: Long) {
 

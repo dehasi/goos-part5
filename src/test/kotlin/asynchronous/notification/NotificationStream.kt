@@ -1,4 +1,4 @@
-package asynchronous
+package asynchronous.notification
 
 class NotificationStream<NOTIFICATION>(val trace: MutableList<NOTIFICATION>, val criteria: (NOTIFICATION) -> Boolean) {
 
