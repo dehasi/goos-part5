@@ -3,26 +3,12 @@ package maybe
 import maybe.Maybe.Companion.definitely
 import maybe.Maybe.Companion.unknown
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.fail
 import org.junit.jupiter.api.Test
 import java.util.function.Function
 import java.util.function.Predicate
 
 class MaybeTest {
-    class Customer {
-        private var emailAddress: Maybe<String>
-
-        constructor(emailAddress: String) {
-            this.emailAddress = definitely(emailAddress)
-        }
-
-        constructor() {
-            this.emailAddress = unknown()
-        }
-
-        fun emailAddress(): Maybe<String> {
-            return emailAddress
-        }
-    }
 
     @Test fun `equals of known values`() {
         assertThat(definitely(1)).isEqualTo(definitely(1))
@@ -54,33 +40,32 @@ class MaybeTest {
         assertThat(definitely("X").otherwise(definitely("Y")).otherwise("")).isEqualTo("X")
     }
 
-    @Test
-    fun transforming() {
-        assertThat(Customer("alice@example.com").emailAddress().to<Any>(toUpperCase).otherwise("nobody@example.com"))
-           .isEqualTo("ALICE@EXAMPLE.COM")
-        assertThat(Customer().emailAddress().to<Any>(toUpperCase).otherwise("UNKNOWN"))
+    @Test fun transforming() {
+        assertThat(Customer("alice@example.com").emailAddress().to(toUpperCase).otherwise("nobody@example.com"))
+            .isEqualTo("ALICE@EXAMPLE.COM")
+        assertThat(Customer().emailAddress().to(toUpperCase).otherwise("UNKNOWN"))
             .isEqualTo("UNKNOWN")
     }
 
     @Test fun querying() {
         assertThat(definitely("example@example.com").query(isValidEmailAddress)).isEqualTo(definitely(true))
         assertThat(definitely("invalid-email-address").query(isValidEmailAddress)).isEqualTo(definitely(false))
-        assertThat(unknown <String>().query(isValidEmailAddress).isKnown()).isFalse()
+        assertThat(unknown<String>().query(isValidEmailAddress).isKnown()).isFalse()
     }
 
     @Test fun ifThen() {
         val foo: Maybe<String> = definitely("foo")
         if (foo.isKnown()) for (s in foo) {
-//            assertThat(s, equalTo("foo"))
+            assertThat(s).isEqualTo("foo")
         } else {
-//            fail("should not have been called")
+            fail("should not have been called")
         }
     }
 
     @Test fun ifElse() {
         val foo: Maybe<String> = unknown()
         if (foo.isKnown()) for (s in foo) {
-//            fail("should not have been called")
+            fail<String>("should not have been called")
         } else {
             // ok!
         }
@@ -105,6 +90,21 @@ class MaybeTest {
 
     private fun noString(): Maybe<String> {
         return unknown()
+    }
+
+    class Customer {
+
+        private val emailAddress: Maybe<String>
+
+        constructor(emailAddress: String) {
+            this.emailAddress = definitely(emailAddress)
+        }
+
+        constructor() {
+            this.emailAddress = unknown()
+        }
+
+        fun emailAddress() = emailAddress
     }
 
     companion object {
