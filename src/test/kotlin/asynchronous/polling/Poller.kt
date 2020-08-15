@@ -9,12 +9,10 @@ class Poller(private val timeoutMills: Long, private val pollDelayMills: Long) {
 
         while (probe.isNotSatisfied()) {
             if (timeout.hasTimedOut()) {
-                throw AssertionError(descireFailureFor(probe))
+                throw AssertionError(probe.desireFailure())
             }
             Thread.sleep(pollDelayMills)
             probe.sample()
         }
     }
-
-    private fun descireFailureFor(probe: Probe) = probe.toString()
 }
