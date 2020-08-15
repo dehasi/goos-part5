@@ -2,9 +2,9 @@ package asynchronous
 
 import java.lang.System.currentTimeMillis
 
-class Timeout(durationMs: Long) {
+class Timeout(durationMillis: Long) {
 
-    private val endTime = currentTimeMillis() + durationMs
+    private val endTime = currentTimeMillis() + durationMillis
 
     fun hasTimedOut() = timeRemaining() < 0
 
