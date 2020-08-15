@@ -11,6 +11,7 @@ class Poller(private val timeoutMills: Long, private val pollDelayMills: Long) {
             if (timeout.hasTimedOut()) {
                 throw AssertionError(descireFailureFor(probe))
             }
+            Thread.sleep(pollDelayMills)
             probe.sample()
         }
     }
