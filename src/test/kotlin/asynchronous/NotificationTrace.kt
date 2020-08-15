@@ -14,5 +14,18 @@ class NotificationTrace<NOTIFICATION>(private val timeOutMs: Long) {
 
     fun containsNotification(criteria: (NOTIFICATION) -> Boolean) {
         val timeout = Timeout(timeOutMs)
+
+        synchronized(traceLock) {
+            val stream = NotificationStream(trace, criteria)
+
+            while (stream.hasNotMatched()) {
+                if (timeout.hasTimedOut()) {
+                    throw AssertionError(failreDeceptionFrom(criteria))
+                }
+                timeout.waitOn(traceLock)
+            }
+        }
     }
+
+    private fun failreDeceptionFrom(criteria: (NOTIFICATION) -> Boolean) = criteria.toString()
 }
